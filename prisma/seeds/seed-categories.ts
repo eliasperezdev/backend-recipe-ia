@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-
-import { prisma } from '../../src/lib/prisma';
+import 'dotenv/config';
+import { prisma } from '../../src/lib/prisma.ts';
 
 const categoryList = [
   "Postres",
@@ -35,13 +34,3 @@ export async function main() {
   console.log(`¡Seeding completado!`);
   console.log(`Se crearon ${result.count} nuevas categorías.`);
 }
-
-main()
-  .catch(async (e) => {
-    console.error('Error durante el seeding de categorías:', e);
-    await prisma.$disconnect();
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });

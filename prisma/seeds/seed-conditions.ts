@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-import { prisma } from '../../src/lib/prisma';
+import { prisma } from '../../src/lib/prisma.ts';
 
 const conditionList = [
   "Vegetariana",
@@ -42,13 +41,3 @@ export async function main() {
   console.log(`¡Seeding completado!`);
   console.log(`Se crearon ${result.count} nuevas condiciones/dietas.`);
 }
-
-main()
-  .catch(async (e) => {
-    console.error('Error durante el seeding de condiciones:', e);
-    await prisma.$disconnect();
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
